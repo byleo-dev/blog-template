@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PIVOT — Business & Startup Magazine</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f2ede4;
+  --white:#faf6ee;
+  --ink:#1a2e1a;
+  --accent:#2d5a2d;
+  --accent2:#1e3d1e;
+  --muted:#7a8c6a;
+  --border:#ddd8c4;
+  --cream:#e8dfc0;
+  --condensed:'Barlow Condensed',sans-serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow-x:hidden;}
+
+/* ── TOP STRIP ── */
+.top-strip{
+  background:var(--ink);
+  padding:8px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.top-strip-date{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.top-strip-ticker{
+  display:flex;gap:28px;
+  font-size:.62rem;letter-spacing:1px;color:rgba(255,255,255,.5);
+  overflow:hidden;
+}
+.ticker-item span{color:var(--cream);margin-left:6px;}
+.ticker-up{color:#22c55e !important;}
+.ticker-down{color:#ef4444 !important;}
+
+/* ── NAV ── */
+nav{
+  background:var(--white);
+  border-bottom:3px solid var(--ink);
+  position:sticky;top:0;z-index:100;
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:60px;
+}
+.nav-logo{
+  font-family:var(--condensed);
+  font-size:2.4rem;font-weight:900;
+  color:var(--ink);text-decoration:none;
+  letter-spacing:-1px;line-height:1;
+}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:0;}
+.nav-links a{
+  font-size:.68rem;font-weight:500;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  padding:0 16px;height:60px;
+  display:flex;align-items:center;
+  border-right:1px solid var(--border);
+  transition:all .2s;
+}
+.nav-links a:first-child{border-left:1px solid var(--border);}
+.nav-links a:hover{background:var(--ink);color:var(--cream);}
+.nav-links a.hot{background:var(--accent);color:var(--white);}
+.nav-links a.hot:hover{background:var(--accent2);}
+.nav-search{
+  background:none;border:1px solid var(--border);
+  padding:7px 14px;border-radius:2px;
+  font-size:.72rem;color:var(--ink);font-family:var(--sans);
+  outline:none;width:180px;
+}
+.nav-search::placeholder{color:var(--muted);}
+
+/* ── HERO ── */
+#hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:3px;
+  background:var(--border);
+  border-bottom:3px solid var(--ink);
+  margin-bottom:40px;
+}
+.hero-main{
+  grid-column:1;grid-row:1/3;
+  background:var(--ink);
+  padding:48px 44px;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  min-height:520px;
+}
+.hero-main-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#1a1a1a 0%,#0a0a0a 100%);
+}
+.hero-main-accent{
+  position:absolute;top:0;left:0;right:0;
+  height:4px;background:var(--accent);
+}
+.hero-main-num{
+  position:absolute;
+  top:44px;right:44px;
+  font-family:var(--condensed);
+  font-size:min(25vw,200px);font-weight:900;
+  color:rgba(255,255,255,.03);
+  line-height:1;letter-spacing:-4px;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;
+  background:var(--accent);color:var(--white);
+  font-size:.6rem;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  padding:5px 12px;margin-bottom:20px;
+  position:relative;z-index:1;width:fit-content;
+}
+.hero-title{
+  font-family:var(--condensed);
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:900;line-height:.95;
+  letter-spacing:-1px;
+  color:var(--white);
+  margin-bottom:20px;
+  text-transform:uppercase;
+  position:relative;z-index:1;
+}
+.hero-title em{font-style:italic;color:var(--cream);}
+.hero-excerpt{
+  font-size:.85rem;color:rgba(255,255,255,.55);
+  line-height:1.7;max-width:420px;
+  margin-bottom:28px;font-weight:300;
+  position:relative;z-index:1;
+}
+.hero-meta{
+  display:flex;align-items:center;gap:16px;
+  font-size:.65rem;color:rgba(255,255,255,.4);
+  position:relative;z-index:1;
+}
+.hero-meta-author{color:var(--cream);font-weight:500;}
+.read-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--white);color:var(--ink);
+  padding:10px 20px;
+  font-size:.65rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .2s;
+  position:relative;z-index:1;width:fit-content;margin-bottom:24px;
+}
+.read-btn:hover{background:var(--cream);}
+
+.hero-sub{
+  background:var(--white);
+  padding:28px 32px;
+  display:flex;flex-direction:column;justify-content:center;
+  border-left:none;
+}
+.hero-sub-tag{
+  display:inline-flex;
+  background:var(--ink);color:var(--cream);
+  font-size:.58rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:4px 10px;margin-bottom:14px;width:fit-content;
+}
+.hero-sub-title{
+  font-family:var(--condensed);
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:800;line-height:1.05;
+  text-transform:uppercase;letter-spacing:-.5px;
+  color:var(--ink);margin-bottom:10px;
+  text-decoration:none;display:block;transition:color .2s;
+}
+.hero-sub-title:hover{color:var(--accent);}
+.hero-sub-excerpt{font-size:.78rem;color:var(--muted);line-height:1.7;font-weight:300;}
+.hero-sub-meta{font-size:.62rem;color:var(--muted);margin-top:14px;}
+
+/* ── BREAKING BAR ── */
+.breaking-bar{
+  background:var(--accent);
+  padding:10px 40px;
+  display:flex;align-items:center;gap:20px;
+  margin-bottom:40px;
+  overflow:hidden;
+}
+.breaking-label{
+  font-family:var(--condensed);
+  font-size:.85rem;font-weight:900;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--white);white-space:nowrap;
+  background:var(--ink);padding:4px 12px;
+  flex-shrink:0;
+}
+.breaking-text{
+  font-size:.72rem;font-weight:500;
+  color:rgba(255,255,255,.85);
+  white-space:nowrap;
+  animation:ticker 18s linear infinite;
+}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── MAIN LAYOUT ── */
+.main{padding:0 40px 60px;display:grid;grid-template-columns:1fr 320px;gap:40px;max-width:1300px;margin:0 auto;}
+
+/* ── SECTION HEADER ── */
+.section-header{
+  display:flex;align-items:center;gap:0;
+  margin-bottom:24px;
+  border-bottom:3px solid var(--ink);
+  padding-bottom:12px;
+}
+.section-label{
+  font-family:var(--condensed);
+  font-size:1.1rem;font-weight:900;
+  letter-spacing:1px;text-transform:uppercase;
+  color:var(--white);
+  background:var(--ink);
+  padding:4px 16px;margin-right:16px;
+}
+.section-label.red{background:var(--accent);}
+.section-more{
+  margin-left:auto;
+  font-size:.62rem;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  transition:color .2s;
+}
+.section-more:hover{color:var(--accent);}
+
+/* ── ARTICLE GRID ── */
+.articles-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--border);margin-bottom:40px;}
+.art-card{
+  background:var(--white);
+  padding:28px;cursor:pointer;
+  transition:background .2s;
+}
+.art-card:hover{background:#f9f9f7;}
+.art-card.dark{background:var(--ink);}
+.art-card.dark:hover{background:#1a1a1a;}
+.art-tag{
+  display:inline-flex;
+  font-size:.55rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;margin-bottom:12px;
+}
+.tag-red{background:var(--accent);color:var(--white);}
+.tag-yellow{background:var(--cream);color:var(--ink);}
+.tag-ink{background:var(--ink);color:var(--cream);}
+.tag-white{background:var(--white);color:var(--ink);}
+.art-title{
+  font-family:var(--condensed);
+  font-size:clamp(1.3rem,2vw,1.7rem);
+  font-weight:800;line-height:1.05;
+  text-transform:uppercase;letter-spacing:-.3px;
+  color:var(--ink);text-decoration:none;display:block;
+  margin-bottom:10px;transition:color .2s;
+}
+.art-title:hover{color:var(--accent);}
+.art-card.dark .art-title{color:var(--white);}
+.art-card.dark .art-title:hover{color:var(--cream);}
+.art-excerpt{font-size:.78rem;color:var(--muted);line-height:1.7;margin-bottom:14px;font-weight:300;}
+.art-card.dark .art-excerpt{color:rgba(255,255,255,.45);}
+.art-meta{font-size:.62rem;color:var(--muted);}
+.art-card.dark .art-meta{color:rgba(255,255,255,.3);}
+.art-meta strong{color:var(--ink);font-weight:600;}
+.art-card.dark .art-meta strong{color:var(--cream);}
+
+/* ── LIST ARTICLES ── */
+.list-article{
+  display:grid;grid-template-columns:auto 1fr;
+  gap:0;border-bottom:1px solid var(--border);
+  background:var(--white);margin-bottom:3px;
+}
+.list-num{
+  font-family:var(--condensed);
+  font-size:3rem;font-weight:900;
+  color:var(--border);
+  padding:20px 20px 20px 24px;
+  line-height:1;border-right:1px solid var(--border);
+  display:flex;align-items:center;
+}
+.list-body{padding:20px 24px;}
+.list-tag{
+  display:inline-flex;
+  font-size:.55rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:2px 8px;margin-bottom:8px;
+}
+.list-title{
+  font-family:var(--condensed);
+  font-size:1.3rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:-.3px;
+  color:var(--ink);text-decoration:none;
+  display:block;margin-bottom:6px;transition:color .2s;
+}
+.list-title:hover{color:var(--accent);}
+.list-meta{font-size:.62rem;color:var(--muted);}
+
+/* ── SIDEBAR ── */
+.sidebar{}
+.sidebar-widget{margin-bottom:36px;}
+.widget-title{
+  font-family:var(--condensed);
+  font-size:1rem;font-weight:900;
+  letter-spacing:1px;text-transform:uppercase;
+  color:var(--white);background:var(--ink);
+  padding:6px 14px;margin-bottom:0;display:block;
+}
+.widget-title.red{background:var(--accent);}
+
+/* Newsletter widget */
+.newsletter-box{
+  background:var(--white);
+  border:1px solid var(--border);border-top:none;
+  padding:20px;
+}
+.newsletter-text{font-size:.78rem;color:var(--muted);line-height:1.65;margin-bottom:14px;font-weight:300;}
+.newsletter-input{
+  width:100%;background:var(--bg);
+  border:1px solid var(--border);padding:10px 12px;
+  font-size:.78rem;font-family:var(--sans);color:var(--ink);
+  outline:none;margin-bottom:8px;transition:border-color .2s;
+}
+.newsletter-input:focus{border-color:var(--ink);}
+.newsletter-input::placeholder{color:var(--muted);}
+.btn-sub{
+  width:100%;background:var(--accent);color:var(--white);
+  border:none;padding:10px;
+  font-family:var(--condensed);font-size:.9rem;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;cursor:pointer;
+  transition:background .2s;
+}
+.btn-sub:hover{background:var(--accent2);}
+
+/* Trending */
+.trending-list{background:var(--white);border:1px solid var(--border);border-top:none;}
+.trending-item{
+  padding:14px 16px;border-bottom:1px solid var(--border);
+  display:flex;gap:12px;align-items:flex-start;
+  transition:background .2s;
+}
+.trending-item:last-child{border-bottom:none;}
+.trending-item:hover{background:var(--bg);}
+.trending-n{
+  font-family:var(--condensed);
+  font-size:1.6rem;font-weight:900;
+  color:var(--border);line-height:1;flex-shrink:0;width:22px;
+}
+.trending-title{
+  font-family:var(--condensed);
+  font-size:.95rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:-.2px;
+  color:var(--ink);text-decoration:none;
+  display:block;line-height:1.2;margin-bottom:4px;transition:color .2s;
+}
+.trending-title:hover{color:var(--accent);}
+.trending-meta{font-size:.6rem;color:var(--muted);}
+
+/* Stats widget */
+.stats-box{background:var(--ink);border:1px solid var(--ink);border-top:none;padding:20px;}
+.stat-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.stat-row:last-child{border-bottom:none;}
+.stat-name{font-size:.68rem;color:rgba(255,255,255,.4);font-weight:300;}
+.stat-val{
+  font-family:var(--condensed);
+  font-size:1.1rem;font-weight:800;
+  color:var(--cream);
+}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);
+  border-top:4px solid var(--accent);
+  padding:40px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{
+  font-family:var(--condensed);
+  font-size:2rem;font-weight:900;
+  color:var(--white);text-decoration:none;
+  letter-spacing:-1px;
+}
+.footer-logo span{color:var(--accent);}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:.65rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--cream);}
+.footer-copy{font-size:.62rem;color:rgba(255,255,255,.2);}
+.footer-copy a{color:var(--cream);text-decoration:none;}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:.1s;}.reveal-d2{transition-delay:.2s;}.reveal-d3{transition-delay:.3s;}
+
+@media(max-width:768px){
+  .top-strip,.nav-links,.nav-search{display:none;}
+  .nav-inner{padding:0 20px;}
+  #hero{grid-template-columns:1fr;}
+  .hero-sub{display:none;}
+  .hero-main{min-height:380px;padding:32px 24px;}
+  .breaking-bar{padding:10px 20px;}
+  .main{grid-template-columns:1fr;padding:0 20px 48px;}
+  .articles-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:20px;padding:28px 20px;text-align:center;}
+  .footer-links{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="top-strip">
+  <span class="top-strip-date">Wednesday, June 10, 2025</span>
+  <div class="top-strip-ticker">
+    <span class="ticker-item">S&P 500 <span class="ticker-up">▲ 0.8%</span></span>
+    <span class="ticker-item">NASDAQ <span class="ticker-up">▲ 1.2%</span></span>
+    <span class="ticker-item">BTC <span class="ticker-down">▼ 2.1%</span></span>
+    <span class="ticker-item">EUR/USD <span class="ticker-up">▲ 0.3%</span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">PIVOT<span>.</span></a>
+    <div class="nav-links">
+      <a href="#">Startups</a>
+      <a href="#">Funding</a>
+      <a href="#">Strategy</a>
+      <a href="#">Leaders</a>
+      <a href="#">Markets</a>
+      <a href="#" class="hot">🔥 Breaking</a>
+    </div>
+    <input type="text" class="nav-search" placeholder="Search stories..."/>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-main">
+    <div class="hero-main-bg"></div>
+    <div class="hero-main-accent"></div>
+    <div class="hero-main-num">01</div>
+    <span class="hero-tag">Cover Story</span>
+    <h1 class="hero-title">
+      The $40B bet<br>that <em>changed</em><br>everything.
+    </h1>
+    <p class="hero-excerpt">How a 28-year-old founder convinced the world's toughest investors to back a company with no revenue, no product, and one very audacious idea.</p>
+    <a href="#" class="read-btn">Read Full Story →</a>
+    <div class="hero-meta">
+      <span class="hero-meta-author">Marcus Reid</span>
+      <span>·</span>
+      <span>June 10, 2025</span>
+      <span>·</span>
+      <span>12 min read</span>
+    </div>
+  </div>
+  <div class="hero-sub">
+    <span class="hero-sub-tag">Funding</span>
+    <a href="#" class="hero-sub-title">VCs are quietly pulling back. Here's what that means for you.</a>
+    <p class="hero-sub-excerpt">After two years of record-low deal activity, venture capital is shifting — and not in the direction founders were hoping for.</p>
+    <div class="hero-sub-meta">Sarah K. · May 28 · 6 min</div>
+  </div>
+  <div class="hero-sub">
+    <span class="hero-sub-tag" style="background:var(--accent);color:#fff;">Strategy</span>
+    <a href="#" class="hero-sub-title">Why your second product almost always fails — and how to fix it.</a>
+    <p class="hero-sub-excerpt">The sophomore slump is real. The founders who beat it share one counterintuitive habit.</p>
+    <div class="hero-sub-meta">Leo · Jun 3 · 5 min</div>
+  </div>
+</section>
+
+<!-- BREAKING BAR -->
+<div class="breaking-bar">
+  <span class="breaking-label">Breaking</span>
+  <span class="breaking-text">
+    Anthropic raises $3.5B at $60B valuation &nbsp;·&nbsp;
+    OpenAI announces new enterprise product line &nbsp;·&nbsp;
+    Y Combinator W25 batch hits record 500 companies &nbsp;·&nbsp;
+    Stripe reportedly eyeing $65B IPO this fall &nbsp;·&nbsp;
+    Andreessen Horowitz closes $7.2B new fund &nbsp;·&nbsp;
+    Anthropic raises $3.5B at $60B valuation &nbsp;·&nbsp;
+    OpenAI announces new enterprise product line &nbsp;·&nbsp;
+    Y Combinator W25 batch hits record 500 companies &nbsp;·&nbsp;
+  </span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div>
+    <!-- LATEST -->
+    <div class="section-header reveal">
+      <span class="section-label">Latest</span>
+      <a href="#" class="section-more">View All →</a>
+    </div>
+
+    <div class="articles-grid reveal">
+      <div class="art-card dark">
+        <span class="art-tag tag-yellow">Startups</span>
+        <a href="#" class="art-title">The 5 questions every investor asks in the first 60 seconds.</a>
+        <p class="art-excerpt">Master these and the rest of the meeting takes care of itself.</p>
+        <div class="art-meta"><strong>Priya Nair</strong> · June 9 · 4 min</div>
+      </div>
+      <div class="art-card">
+        <span class="art-tag tag-red">Funding</span>
+        <a href="#" class="art-title">Bridge rounds are back — and they're bigger than ever.</a>
+        <p class="art-excerpt">Why founders are choosing to extend rather than raise, and what it says about the market.</p>
+        <div class="art-meta"><strong>Tom Elias</strong> · June 8 · 5 min</div>
+      </div>
+      <div class="art-card">
+        <span class="art-tag tag-ink">Strategy</span>
+        <a href="#" class="art-title">Stop hiring for culture fit. Start hiring for culture add.</a>
+        <p class="art-excerpt">The companies growing fastest in 2025 have quietly abandoned one of the industry's most popular hiring frameworks.</p>
+        <div class="art-meta"><strong>Leo</strong> · June 7 · 6 min</div>
+      </div>
+      <div class="art-card dark">
+        <span class="art-tag tag-white">Leaders</span>
+        <a href="#" class="art-title">The CEO who turned down $200M — twice.</a>
+        <p class="art-excerpt">What Mia Strand's refusals taught her about knowing what your company is actually worth.</p>
+        <div class="art-meta"><strong>Dana Fox</strong> · June 6 · 8 min</div>
+      </div>
+    </div>
+
+    <!-- MOST READ -->
+    <div class="section-header reveal">
+      <span class="section-label red">Most Read</span>
+    </div>
+
+    <div class="reveal">
+      <div class="list-article">
+        <div class="list-num">1</div>
+        <div class="list-body">
+          <span class="list-tag tag-red">Startups</span>
+          <a href="#" class="list-title">Why 90% of seed startups never raise a Series A — and what the other 10% do differently.</a>
+          <div class="list-meta">Marcus Reid · 9 min read · 48k reads</div>
+        </div>
+      </div>
+      <div class="list-article">
+        <div class="list-num">2</div>
+        <div class="list-body">
+          <span class="list-tag tag-ink">Markets</span>
+          <a href="#" class="list-title">The quiet recession nobody's talking about — yet.</a>
+          <div class="list-meta">Sarah K. · 7 min read · 36k reads</div>
+        </div>
+      </div>
+      <div class="list-article">
+        <div class="list-num">3</div>
+        <div class="list-body">
+          <span class="list-tag tag-yellow" style="color:var(--ink);">Strategy</span>
+          <a href="#" class="list-title">Fire fast, hire slow — why the advice is backwards.</a>
+          <div class="list-meta">Leo · 5 min read · 29k reads</div>
+        </div>
+      </div>
+      <div class="list-article">
+        <div class="list-num">4</div>
+        <div class="list-body">
+          <span class="list-tag tag-red">Funding</span>
+          <a href="#" class="list-title">Inside the deal that nobody saw coming: a $1.2B acquisition in 11 days.</a>
+          <div class="list-meta">Priya Nair · 10 min read · 22k reads</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-widget reveal">
+      <span class="widget-title red">Newsletter</span>
+      <div class="newsletter-box">
+        <p class="newsletter-text">The business stories that matter, delivered every morning at 7AM. Read by 40,000+ founders.</p>
+        <input type="email" class="newsletter-input" placeholder="your@email.com"/>
+        <button class="btn-sub">Subscribe Free</button>
+      </div>
+    </div>
+
+    <div class="sidebar-widget reveal reveal-d1">
+      <span class="widget-title">Trending Now</span>
+      <div class="trending-list">
+        <div class="trending-item">
+          <span class="trending-n">1</span>
+          <div>
+            <a href="#" class="trending-title">The $40B bet that changed everything</a>
+            <div class="trending-meta">12 min · 61k reads</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-n">2</span>
+          <div>
+            <a href="#" class="trending-title">VCs are quietly pulling back</a>
+            <div class="trending-meta">6 min · 44k reads</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-n">3</span>
+          <div>
+            <a href="#" class="trending-title">Bridge rounds are back — and bigger</a>
+            <div class="trending-meta">5 min · 31k reads</div>
+          </div>
+        </div>
+        <div class="trending-item">
+          <span class="trending-n">4</span>
+          <div>
+            <a href="#" class="trending-title">Stop hiring for culture fit</a>
+            <div class="trending-meta">6 min · 27k reads</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget reveal reveal-d2">
+      <span class="widget-title">Market Pulse</span>
+      <div class="stats-box">
+        <div class="stat-row">
+          <span class="stat-name">VC Deals (May '25)</span>
+          <span class="stat-val">$18.4B</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">YC W25 Companies</span>
+          <span class="stat-val">500+</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Avg. Seed Round</span>
+          <span class="stat-val">$3.2M</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">IPOs YTD</span>
+          <span class="stat-val">42</span>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">PIVOT<span>.</span></a>
+  <nav class="footer-links">
+    <a href="#">Startups</a>
+    <a href="#">Funding</a>
+    <a href="#">Strategy</a>
+    <a href="#">Leaders</a>
+    <a href="#">Markets</a>
+    <a href="#">About</a>
+  </nav>
+  <p class="footer-copy">© 2025 PIVOT. Built by <a href="https://resumeleo.rqvg2s74g5.workers.dev">Leo</a></p>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1});
+reveals.forEach(el => observer.observe(el));
+
+document.querySelectorAll('.filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
